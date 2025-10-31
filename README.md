@@ -26,8 +26,8 @@ If not deployed as a web app, it will include a **standalone Python script (`pre
 - Develop and deploy web app
 
 ## Project Structure
-InfoCycle/
-    model/                Trained model weights (to be added)
-    notebooks/            Model training and experimentation
-        ── train_model.ipynb
-    src/                  Future: predict.py and web app scripts
+InfoCycle/  
+    model/                Trained model weights (to be added)  
+    notebooks/            Model training and experimentation  
+        ── train_model.ipynb  
+    src/                  Future: predict.py and web app scripts  
