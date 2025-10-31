@@ -1,5 +1,5 @@
-## InfoCycle ♻️
-# An AI Recycle Classifier
+# InfoCycle ♻️
+## An AI Recycle Classifier
 
 An AI-powered tool that identifies and classifies waste materials such as **plastic, glass, paper, and metal** using image recognition.  
 The goal of **InfoCycle** is to help users determine whether an item is recyclable with just a single image.
