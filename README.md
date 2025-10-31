@@ -1,1 +1,1 @@
-# AI-Recycle-Classifier
+# InfoCycle
