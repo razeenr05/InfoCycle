@@ -1,11 +1,5 @@
-dataset/
-dataset_raw/
+datasets/
 *.zip
-
-model/
-*.pth
-*.pt
-*.h5
 
 __pycache__/
 *.pyc

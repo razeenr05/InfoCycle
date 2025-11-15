@@ -17,11 +17,12 @@ If not deployed as a web app, it will include a **standalone Python script (`pre
 
 ## Current Progress
 - Project structure created and organized  
-- Environment setup with GPU enabled PyTorch (for me only)
-- (WIP) Developing and training the ResNet-18 model (`train_model.ipynb`)  
+- Environment setup with GPU-accelerated PyTorch  
+- Successfully trained a ResNet-18 classification model  
+- Achieved **97% test accuracy** on the Garbage Classification dataset  
+- Added model saving + versioned model weights  
 
 ## Future Plans
-- Complete model training and release downloadable model
 - Add `predict.py` for quick local image testing 
 - Display recyclability confidence score and category breakdown  
 - Develop and deploy web app
@@ -29,7 +30,8 @@ If not deployed as a web app, it will include a **standalone Python script (`pre
 ## Project Structure
 ```
 InfoCycle/  
-    model/                Trained model weights (to be added)  
+    model/                Trained model (97% accuracy)
+        ── infocycle_v1.pth   
     notebooks/            Model training and experimentation  
         ── train_model.ipynb  
     src/                  Future: predict.py and web app scripts
