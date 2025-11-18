@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InfoCycle AI</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>♻️ InfoCycle — AI Recycle Classifier</h1>
+
+    <!-- basic upload form that posts to the fastapi endpoint -->
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Analyze Image</button>
+    </form>
+
+    <!-- placeholder where the backend injects prediction html -->
+    <div id="result">
+        {{result}}
+    </div>
+</body>
+</html>

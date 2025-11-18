@@ -1,38 +1,47 @@
 # InfoCycle ♻️
 ## An AI Recycle Classifier
 
-An AI-powered tool that identifies and classifies waste materials such as **plastic, glass, paper, and metal** using image recognition.  
-The goal of **InfoCycle** is to help users determine whether an item is recyclable with just a single image.
+InfoCycle is an AI-powered tool that identifies waste materials (plastic, glass, paper, metal, etc.) from an image and explains whether the item can be recycled. The latest version ships as a simple FastAPI web app so you can drag in a photo and instantly see the classification.
 
-In the future, InfoCycle will (hopefully) be available as a **simple web app** where users can upload a photo and instantly receive a classification result.  
-If not deployed as a web app, it will include a **standalone Python script (`predict.py`)** that takes an image file and outputs the detected material type and recyclability!
+## Setup
+1. Clone the repo and enter the folder:  
+   `git clone https://github.com/razeenrahman/InfoCycle.git && cd InfoCycle`
+2. Create and activate a virtual environment:  
+   `python -m venv .venv && source .venv/bin/activate`
+3. Install the dependencies:  
+   `pip install -r requirements.txt`
+4. Launch the FastAPI server:  
+   `uvicorn src.app:app --reload`
+5. Visit <http://127.0.0.1:8000>, upload an image, and the page will refresh with the predicted class.
 
-## Features (Planned)
-- Classify uploaded images into material categories (plastic, paper, glass, metal, etc.)  
-- Determine recyclability directly from an image  
-- Fast and lightweight inference with a pre-trained model  
-- Option to run locally using `predict.py`  
-- Future web integration with an upload based UI  
-- Powered by a ResNet-18 deep learning model trained in **PyTorch**
+## Features
+- Upload images via the FastAPI-powered web form and get instant predictions
+- Determine recyclability directly from the detected class with helpful emoji labels
+- Fast and lightweight inference powered by a fine-tuned ResNet-18 checkpoint
 
 ## Current Progress
-- Project structure created and organized  
-- Environment setup with GPU-accelerated PyTorch  
-- Successfully trained a ResNet-18 classification model  
-- Achieved **97% test accuracy** on the Garbage Classification dataset  
-- Added model saving + versioned model weights  
+- Environment setup with GPU-accelerated PyTorch
+- Successfully trained a ResNet-18 classification model with PyTorch
+- Achieved **97% test accuracy** on the Garbage Classification dataset
+- Added model saving + versioned model weights
+- Deployed a simple FastAPI web app to upload images and receive classifications
 
 ## Future Plans
-- Add `predict.py` for quick local image testing 
-- Display recyclability confidence score and category breakdown  
-- Develop and deploy web app
+- Improve the front-end experience (drag-and-drop, responsive layout)
+- Display recyclability confidence scores and class probability breakdowns
+- Deploy the web app to a managed host so others can try it without setup
 
 ## Project Structure
 ```
-InfoCycle/  
-    model/                Trained model (97% accuracy)
-        ── infocycle_v1.pth   
-    notebooks/            Model training and experimentation  
-        ── train_model.ipynb  
-    src/                  Future: predict.py and web app scripts
+InfoCycle/
+    model/
+        └── infocycle_v1.pth        # trained model weights
+    notebooks/
+        └── train_model.ipynb       # training + experimentation notebook
+    src/
+        ├── app.py                  # FastAPI routes + inference logic
+        ├── index.html              # upload UI template
+        ├── style.css               # styling for the demo site
+        ├── model_loader.py         # model + transform loader
+        └── utils.py                # recyclability + subcategory helpers
 ```
