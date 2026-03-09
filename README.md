@@ -27,7 +27,6 @@ InfoCycle is an AI-powered tool that identifies waste materials (plastic, glass,
 - Deployed a simple FastAPI web app to upload images and receive classifications
 
 ## Future Plans
-- Improve the front-end experience (drag-and-drop, responsive layout)
 - Display recyclability confidence scores and class probability breakdowns
 - Deploy the web app to a managed host so others can try it without setup
 
