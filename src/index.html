@@ -1,21 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>InfoCycle AI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoCycle AI — Recycle Classifier</title>
     <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-    <h1>♻️ InfoCycle — AI Recycle Classifier</h1>
+<body class="app-body">
+    <div class="app-shell">
+        <header class="app-header">
+            <div class="brand">
+                <div class="brand-logo-wrap">
+                    <div class="brand-logo-inner">
+                        <img src="/logo.png" alt="InfoCycle logo" class="brand-logo">
+                    </div>
+                </div>
+                <div class="brand-text">
+                    <h1 class="brand-title">InfoCycle</h1>
+                    <p class="brand-subtitle">AI Recycle Classifier</p>
+                </div>
+            </div>
+        </header>
 
-    <!-- basic upload form that posts to the fastapi endpoint -->
-    <form action="/predict" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*" required>
-        <button type="submit">Analyze Image</button>
-    </form>
+        <main class="app-main">
+            <section class="card upload-card">
+                <h2 class="card-title">Analyze an item</h2>
+                <p class="card-helper">
+                    Upload a photo of trash or recyclables and InfoCycle will tell you how to dispose of it.
+                </p>
 
-    <!-- placeholder where the backend injects prediction html -->
-    <div id="result">
-        {{result}}
+                <!-- upload form that posts to the FastAPI endpoint -->
+                <form action="/predict" method="post" enctype="multipart/form-data" class="upload-form">
+                    <label class="file-drop">
+                        <span class="file-drop-label">
+                            Drag &amp; drop an image here, or <span class="file-drop-highlight">browse files</span>
+                        </span>
+                        <input type="file" name="file" accept="image/*" required class="file-input">
+                    </label>
+
+                    <p class="file-selected" id="file-selected" aria-live="polite"></p>
+
+                    <button type="submit" class="primary-button">
+                        Analyze Image
+                    </button>
+                </form>
+
+                <p class="card-footnote">
+                    Images are processed in real time and not stored.
+                </p>
+            </section>
+
+            <section class="card result-card">
+                <h2 class="card-title">Result</h2>
+                <!-- placeholder where the backend injects prediction html -->
+                <div id="result" class="result-content">
+                    {{result}}
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p class="footer-text">
+                Built with FastAPI &amp; PyTorch • Keeping recyclables out of landfills.
+            </p>
+        </footer>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fileInput = document.querySelector(".file-input");
+            const fileSelected = document.getElementById("file-selected");
+            const fileDropLabel = document.querySelector(".file-drop-label");
+
+            if (!fileInput || !fileSelected || !fileDropLabel) return;
+
+            const defaultLabelHTML = 'Drag &amp; drop an image here, or <span class="file-drop-highlight">browse files</span>';
+
+            fileInput.addEventListener("change", function () {
+                if (fileInput.files && fileInput.files[0]) {
+                    const name = fileInput.files[0].name;
+                    fileSelected.textContent = "Selected image: " + name;
+                    fileSelected.classList.add("is-visible");
+                    fileDropLabel.innerHTML = 'Image ready to upload • <span class="file-drop-highlight">' + name + "</span>";
+                } else {
+                    fileSelected.textContent = "";
+                    fileSelected.classList.remove("is-visible");
+                    fileDropLabel.innerHTML = defaultLabelHTML;
+                }
+            });
+        });
+    </script>
 </body>
 </html>

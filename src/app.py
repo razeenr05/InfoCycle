@@ -32,6 +32,11 @@ def serve_css():
     return FileResponse("src/style.css")
 
 
+@app.get("/logo.png")
+def serve_logo():
+    return FileResponse("src/logo.png")
+
+
 @app.post("/predict", response_class=HTMLResponse)
 async def predict(file: UploadFile = File(...)):
 
